@@ -25,13 +25,15 @@ h3 {
     color: #70757a;
 }
 li{
-    text-transform: capitalize;
     color: #70757a;
     font-size: 15px;
     line-height: 16px;
     padding-left: 9px;
     padding-top: 6px;
     list-style: none;
+}
+li:first-letter{
+    text-transform: capitalize;
 }
 ul {
     margin: 0;

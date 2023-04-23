@@ -22,7 +22,6 @@ function formartdate(timestamp) {
   return `${day} ${hours} : ${minutes}`;
 }
 function displaytemperatuer(response) {
-  console.log(response.data);
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
   let humidityElement = document.querySelector("#humidity");

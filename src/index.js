@@ -35,7 +35,7 @@ function formartdate(timestamp) {
     dateElement.innerHTML = formartdate(response.data.dt*1000);
     let iconElement = document.querySelector("#icon");
     iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-    iconElement.setAttribute("alt", response.data.weather[0].icon);
+    iconElement.setAttribute("alt", respon1se.data.weather[0].icon);
   }
   function search(city){
     let key = "441d1183262ff89540a8b2407eb2ee23";
@@ -47,9 +47,9 @@ function formartdate(timestamp) {
   function handlesubmit(event){
     event.preventdefault();
     let cityinputElement = document.querySelector("#city-input");
-    console.log(cityinputElement.value);
+    search(cityinputElement.value);
   }
-  search("paris");
+  
   
   let form = document.querySelector("#search-form");
   form.addEventListener("submit", handlesubmit);

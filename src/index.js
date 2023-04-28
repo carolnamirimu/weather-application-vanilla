@@ -80,3 +80,5 @@ Fahrenheitlink.addEventListener("click", displayFahrenheittemperature);
 
 let celsiuslink=document.querySelector("#celisius-link");
 celsiuslink.addEventListener("click", displaycelsiustemperature);
+
+search ("kampala");

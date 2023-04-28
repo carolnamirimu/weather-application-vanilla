@@ -12,7 +12,6 @@
 margin: bottom 0px;
 }
 
-
 h1 {
     overflow: hidden;
     padding-top: 4px;
@@ -39,14 +38,14 @@ ul {
     margin: 0;
     padding: 0;
 }
-.weather-temperatuer strong {
+ strong {
     color: #202124;
     display: inline-block;
     font-weight: 400;
     font-size: 40px;
     line-height: 1;
 }
-.weather-temperatuer small {
+ small {
     position: relative;
     color: #202124;
     font-size: 14px;

@@ -20,6 +20,33 @@ function formartdate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours} : ${minutes}`;
 }
+function displayforecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHtml = `<div class="row">`;
+let days= ["Sun","Mon", "Tue","Wed","Thur"];
+days.forEach(function(day){
+
+    forecastHtml = forecastHtml +
+    `
+   <div class="col-2">
+       <div class="weather-forecast-date"></div>
+     ${day}
+     <img
+       src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png"
+       alt="cloudy"
+       srcset=""
+       id="icon" width="50"
+     />
+     <div class="weather-forcast-tempereture" >
+     <span class="weather-forecast-tempereture-min">12°</span>
+     <span class="weather-forecast-tempereture-max"> 30°</span> 
+   </div>
+   </div>
+   `;
+})
+forecastHtml=forecastHtml+`</div>`;
+forecastElement.innerHTML= forecastHtml;
+}
 function displaytemperatuer(response) {
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -28,7 +55,7 @@ function displaytemperatuer(response) {
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
   let temperatuerElement = document.querySelector("#temperatuer");
-  celsiusTemperature = response.data.main.temp
+  celsiusTemperature = response.data.main.temp;
   temperatuerElement.innerHTML = Math.round(celsiusTemperature);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
@@ -40,7 +67,6 @@ function displaytemperatuer(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].icon);
-  
 }
 function search(city) {
   let key = "441d1183262ff89540a8b2407eb2ee23";
@@ -60,14 +86,14 @@ function displayFahrenheittemperature(event) {
   celsiuslink.classList.remove("active");
   Fahrenheitlink.classList.add("active");
   let temperatureElement = document.querySelector("#temperatuer");
-  temperatureElement.innerHTML = Math.round(FahrenheitTemperature) ;
+  temperatureElement.innerHTML = Math.round(FahrenheitTemperature);
 }
 function displaycelsiustemperature(event) {
-    event.preventDefault();
-    celsiuslink.classList.add("active");
+  event.preventDefault();
+  celsiuslink.classList.add("active");
   Fahrenheitlink.classList.remove("active");
-    let temperatureElement = document.querySelector("#temperatuer");
-    temperatureElement.innerHTML = Math.round(celsiusTemperature)  ;
+  let temperatureElement = document.querySelector("#temperatuer");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 let celsiusTemperature = null;
@@ -78,7 +104,8 @@ form.addEventListener("submit", handlesubmit);
 let Fahrenheitlink = document.querySelector("#Fahrenheit-link");
 Fahrenheitlink.addEventListener("click", displayFahrenheittemperature);
 
-let celsiuslink=document.querySelector("#celisius-link");
+let celsiuslink = document.querySelector("#celisius-link");
 celsiuslink.addEventListener("click", displaycelsiustemperature);
 
-search ("kampala");
+search("kampala");
+displayforecast();

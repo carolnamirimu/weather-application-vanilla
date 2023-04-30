@@ -20,7 +20,8 @@ function formartdate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours} : ${minutes}`;
 }
-function displayforecast() {
+function displayforecast(response) {
+    console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let forecastHtml = `<div class="row">`;
 let days= ["Sun","Mon", "Tue","Wed","Thur"];
@@ -48,10 +49,11 @@ forecastHtml=forecastHtml+`</div>`;
 forecastElement.innerHTML= forecastHtml;
 }
 function getforecast(coordinates){
-    console.log(coordinates);
-    let key = "441d1183262ff89540a8b2407eb2ee23";
-  let apiurl=`https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
-  console.log(apiurl);
+
+    let key = "88724523008dc9e1be18f6eb6a959b67";
+  let apiurl=`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
+
+  axios.get(apiurl).then(displayforecast);
 }
 
 
@@ -121,4 +123,4 @@ let celsiuslink = document.querySelector("#celisius-link");
 celsiuslink.addEventListener("click", displaycelsiustemperature);
 
 search("kampala");
-displayforecast();
+

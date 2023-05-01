@@ -39,7 +39,7 @@ forecast.forEach(function(forecastday, index){
 if(index < 4){
     forecastHtml = forecastHtml +
     `
-   <div class="col-2">
+   <div class="col-3">
        <div class="weather-forecast-date"></div>
      ${formartDay(forecastday.dt)}
      <img

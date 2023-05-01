@@ -20,38 +20,49 @@ function formartdate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours} : ${minutes}`;
 }
+
+function formartDay(timestamp){
+let date = new Date(timestamp*1000);
+let day=date.getDay();
+let days = ["Sun", "Mon", "Tue", "Wed","Thu", "Fri", "Sat"];
+
+return days[day];
+
+}
 function displayforecast(response) {
-    console.log(response.data.daily);
+    let forecast=response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
   let forecastHtml = `<div class="row">`;
-let days= ["Sun","Mon", "Tue","Wed","Thur"];
-days.forEach(function(day){
 
+forecast.forEach(function(forecastday, index){
+if(index < 4){
     forecastHtml = forecastHtml +
     `
    <div class="col-2">
        <div class="weather-forecast-date"></div>
-     ${day}
+     ${formartDay(forecastday.dt)}
      <img
-       src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png"
+       src="http://openweathermap.org/img/wn/${forecastday.weather[0].icon}@2x.png"
        alt="cloudy"
        srcset=""
        id="icon" width="50"
      />
      <div class="weather-forcast-tempereture" >
-     <span class="weather-forecast-tempereture-min">12°</span>
-     <span class="weather-forecast-tempereture-max"> 30°</span> 
+     <span class="weather-forecast-tempereture-min">${Math.round(forecastday.temp.min)}°</span>
+     <span class="weather-forecast-tempereture-max"> ${Math.round(forecastday.temp.max)}°</span> 
    </div>
    </div>
-   `;
+   `;}
 })
 forecastHtml=forecastHtml+`</div>`;
-forecastElement.innerHTML= forecastHtml;
-}
-function getforecast(coordinates){
+forecastElement.innerHTML= forecastHtml;}
+    
+function getforecast(coordinates)
+{
 
     let key = "88724523008dc9e1be18f6eb6a959b67";
-  let apiurl=`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
+  let apiurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
 
   axios.get(apiurl).then(displayforecast);
 }
@@ -79,6 +90,7 @@ function displaytemperatuer(response) {
   iconElement.setAttribute("alt", response.data.weather[0].icon);
 
   getforecast(response.data.coord);
+
 }
 
 
